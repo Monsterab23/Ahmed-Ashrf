@@ -1,0 +1,2055 @@
+<!DOCTYPE html>
+<html lang="en" id="html-root">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ahmed Ashraf Hamada - Junior 2D Game Developer specializing in Unity, C#, pixel art aesthetics, and retro game mechanics.">
+    <meta name="keywords" content="Ahmed Ashraf, Game Developer, Unity 2D, C#, Pixel Art, Retro Games, Assiut, Egypt, DEPI">
+    <meta name="author" content="Ahmed Ashraf Hamada">
+    
+    <!-- Open Graph Meta -->
+    <meta property="og:title" content="Ahmed Ashraf | Junior 2D Game Developer (Unity & C#)">
+    <meta property="og:description" content="Retro Pixel Art Portfolio of Ahmed Ashraf - Junior Unity 2D & C# Game Developer.">
+    <meta property="og:type" content="website">
+    
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Ahmed Ashraf Hamada",
+      "jobTitle": "Junior 2D Game Developer",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Digital Egypt Pioneers Initiative (DEPI)"
+      },
+      "alumniOf": "Egyptian-German Technological College in Assiut",
+      "knowsAbout": ["Unity 2D", "C#", "Pixel Art Games", "Player Movement Systems", "Visual Studio"],
+      "telephone": "+201014886498",
+      "email": "ahmedashrf33658498@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Assiut",
+        "addressCountry": "Egypt"
+      },
+      "sameAs": [
+        "https://linkedin.com/in/ahmed-ashrf-572a57354"
+      ]
+    }
+    </script>
+
+    <title>Ahmed Ashraf | Junior 2D Game Developer (Pixel Art Theme)</title>
+    
+    <!-- Retro Pixel Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Silkscreen:wght@400;700&family=VT323&family=DM+Sans:wght@400;500;700&family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* ==========================================================================
+           1. RETRO PIXEL ART COLOR PALETTE & RESET
+           ========================================================================== */
+        :root {
+            --bg-dark: #0b0c10;
+            --bg-card: rgba(18, 20, 26, 0.95);
+            --bg-card-hover: rgba(28, 30, 38, 0.98);
+            
+            /* Logo Signature Palette */
+            --logo-red: #ac3232;
+            --logo-red-dark: #8b2525;
+            --logo-cream: #fffdde;
+            --logo-cream-gold: #fff0bd;
+            --logo-charcoal: #2f2f2f;
+            --logo-gray: #847e87;
+            
+            /* Theme Accents based on Logo */
+            --border-pixel: #ac3232;
+            --accent-red: #ac3232;
+            --accent-cream: #fffdde;
+            --accent-yellow: #fff0bd;
+            --accent-cyan: #06b6d4;
+            --accent-pink: #ac3232;
+            --accent-green: #2ecc71;
+            
+            --text-main: #fffdde;
+            --text-muted: #c5cad6;
+            --text-pixel: #fff0bd;
+            
+            --font-pixel: 'Press Start 2P', monospace;
+            --font-pixel-sub: 'Silkscreen', monospace;
+            --font-pixel-vt: 'VT323', monospace;
+            --font-body: 'DM Sans', sans-serif;
+            --font-arabic: 'Cairo', sans-serif;
+            
+            --pixel-shadow: 4px 4px 0px #000, 6px 6px 0px var(--logo-red);
+            --pixel-shadow-cream: 4px 4px 0px #000, 6px 6px 0px var(--logo-cream-gold);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+            image-rendering: pixelated;
+            image-rendering: crisp-edges;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        /* RTL Styles when Arabic is active */
+        html[dir="rtl"] body {
+            font-family: var(--font-arabic), var(--font-body);
+            text-align: right;
+        }
+
+        html[dir="rtl"] .hero-content, 
+        html[dir="rtl"] .usp-box,
+        html[dir="rtl"] .tech-cloud-box,
+        html[dir="rtl"] .section-header {
+            text-align: right;
+        }
+
+        html[dir="rtl"] .hero-content {
+            text-align: center;
+        }
+
+        /* CRT Scanline Overlay */
+        .scanline-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 10;
+            opacity: 0.15;
+            background: linear-gradient(
+                rgba(18, 16, 16, 0) 50%, 
+                rgba(0, 0, 0, 0.5) 50%
+            ), linear-gradient(
+                90deg,
+                rgba(255, 0, 0, 0.03),
+                rgba(0, 255, 0, 0.01),
+                rgba(0, 0, 255, 0.03)
+            );
+            background-size: 100% 4px, 6px 100%;
+        }
+
+        /* Starry Pixel Background Canvas */
+        #pixel-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Custom Pixel Animated Cursor */
+        .cursor-dot, .cursor-ring {
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 9999;
+            transition: opacity 0.3s ease;
+        }
+        .cursor-dot {
+            width: 12px;
+            height: 12px;
+            background-color: var(--logo-red);
+            border: 2px solid #000;
+            box-shadow: 0 0 10px var(--logo-red);
+        }
+        .cursor-ring {
+            width: 32px;
+            height: 32px;
+            border: 3px dashed var(--logo-cream);
+            animation: spinCursor 8s linear infinite;
+        }
+
+        @keyframes spinCursor {
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        @media (hover: none) {
+            .cursor-dot, .cursor-ring { display: none; }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #000;
+            border-left: 2px solid var(--logo-red);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--logo-red);
+            border: 2px solid #000;
+            box-shadow: inset 0 0 4px var(--logo-cream);
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--logo-cream-gold);
+        }
+
+        /* Container & Section Layout */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        section {
+            padding: 6rem 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Pixel Section Headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-tag {
+            font-family: var(--font-pixel-sub);
+            display: inline-block;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--logo-cream);
+            background: #000;
+            padding: 0.5rem 1.2rem;
+            border: 2px solid var(--logo-red);
+            box-shadow: 4px 4px 0px #000, 6px 6px 0px var(--logo-red);
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: var(--font-pixel);
+            font-size: 1.8rem;
+            color: var(--logo-cream);
+            text-shadow: 3px 3px 0px #000, 5px 5px 0px var(--logo-red);
+            letter-spacing: -1px;
+            line-height: 1.4;
+        }
+
+        /* ==========================================================================
+           2. RETRO ARCADE LOADING SCREEN
+           ========================================================================== */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #000;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .loader-title {
+            font-family: var(--font-pixel);
+            font-size: 2.2rem;
+            color: var(--logo-cream);
+            text-shadow: 4px 4px 0px var(--logo-red);
+            margin-bottom: 2rem;
+            animation: pulseText 1s infinite alternate;
+        }
+
+        @keyframes pulseText {
+            0% { opacity: 0.7; transform: scale(0.98); }
+            100% { opacity: 1; transform: scale(1.02); }
+        }
+
+        .loader-box {
+            width: 280px;
+            padding: 6px;
+            background: #000;
+            border: 4px solid var(--logo-cream);
+            box-shadow: 6px 6px 0px var(--logo-red);
+        }
+
+        .loader-bar {
+            height: 20px;
+            width: 0%;
+            background: linear-gradient(90deg, var(--logo-red), var(--logo-red-dark), var(--logo-cream-gold));
+            animation: fillLoader 1.8s steps(10) forwards;
+        }
+
+        @keyframes fillLoader {
+            to { width: 100%; }
+        }
+
+        .loader-subtext {
+            font-family: var(--font-pixel-sub);
+            font-size: 0.8rem;
+            color: var(--accent-yellow);
+            margin-top: 1.5rem;
+        }
+
+        /* ==========================================================================
+           3. RETRO NAVBAR & LANGUAGE SWITCHER
+           ========================================================================== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(11, 12, 16, 0.95);
+            border-bottom: 4px solid var(--logo-red);
+            transform: translateY(-100%);
+            animation: slideDownNav 0.6s steps(5) 1.8s forwards;
+        }
+
+        @keyframes slideDownNav {
+            to { transform: translateY(0); }
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 75px;
+        }
+
+        .nav-left-box {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-family: var(--font-pixel);
+            font-size: 0.85rem;
+            color: var(--logo-cream);
+            text-decoration: none;
+            text-shadow: 2px 2px 0px #000, 3px 3px 0px var(--logo-red);
+        }
+
+        .nav-logo img {
+            width: 36px;
+            height: 36px;
+            border: 2px solid var(--logo-cream);
+            background: var(--logo-cream);
+            box-shadow: 2px 2px 0px #000, 3px 3px 0px var(--logo-red);
+            object-fit: contain;
+        }
+
+        .nav-logo span {
+            color: var(--logo-red);
+        }
+
+        .lang-btn {
+            font-family: var(--font-pixel-sub);
+            font-size: 0.8rem;
+            padding: 0.4rem 0.8rem;
+            background: var(--logo-red);
+            color: var(--logo-cream);
+            border: 2px solid #000;
+            box-shadow: 3px 3px 0px #000;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .lang-btn:hover {
+            background: var(--logo-cream);
+            color: #000;
+            transform: translate(-2px, -2px);
+            box-shadow: 4px 4px 0px #000, 6px 6px 0px var(--logo-red);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            font-family: var(--font-pixel-sub);
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            padding: 0.4rem 0.6rem;
+            transition: all var(--transition-fast);
+        }
+
+        .nav-links a:hover {
+            color: #000;
+            background: var(--logo-cream);
+            box-shadow: 3px 3px 0px var(--logo-red);
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: #000;
+            border: 2px solid #fff;
+            color: #fff;
+            font-family: var(--font-pixel);
+            font-size: 1rem;
+            padding: 0.4rem 0.8rem;
+            cursor: pointer;
+        }
+
+        /* ==========================================================================
+           4. HERO SECTION
+           ========================================================================== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 100px;
+        }
+
+        .hero-content {
+            max-width: 850px;
+            margin: 0 auto;
+            text-align: center;
+            background: var(--bg-card);
+            border: 4px solid var(--logo-cream);
+            box-shadow: 6px 6px 0px #000, 10px 10px 0px var(--logo-red);
+            padding: 3.5rem 2.5rem;
+            position: relative;
+        }
+
+        .hero-content::before {
+            content: '🕹️ AHMED FOR GAMES';
+            position: absolute;
+            top: -16px;
+            left: 20px;
+            font-family: var(--font-pixel-sub);
+            font-size: 0.75rem;
+            background: var(--logo-red);
+            color: var(--logo-cream);
+            padding: 0.2rem 0.8rem;
+            border: 2px solid #000;
+            box-shadow: 2px 2px 0px #000;
+        }
+
+        html[dir="rtl"] .hero-content::before {
+            left: auto;
+            right: 20px;
+            content: '🕹️ أحمد للألعاب';
+        }
+
+        .hero-logo-badge {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .hero-logo-img {
+            width: 120px;
+            height: 120px;
+            border: 4px solid #000;
+            background: var(--logo-cream);
+            box-shadow: 4px 4px 0px #000, 8px 8px 0px var(--logo-red);
+            transition: transform 0.2s ease;
+        }
+
+        .hero-logo-img:hover {
+            transform: scale(1.06) rotate(-2deg);
+        }
+
+        .availability-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-family: var(--font-pixel-sub);
+            font-size: 0.8rem;
+            color: var(--accent-green);
+            background: #000;
+            padding: 0.4rem 1.2rem;
+            border: 2px solid var(--accent-green);
+            margin-bottom: 1.5rem;
+            box-shadow: 3px 3px 0px #000;
+        }
+
+        .pulse-dot {
+            width: 10px;
+            height: 10px;
+            background-color: var(--accent-green);
+            box-shadow: 0 0 8px var(--accent-green);
+            animation: pixelBlink 1s steps(2) infinite;
+        }
+
+        @keyframes pixelBlink {
+            0% { opacity: 0.2; }
+            100% { opacity: 1; }
+        }
+
+        .hero-name {
+            font-family: var(--font-pixel);
+            font-size: 2.1rem;
+            line-height: 1.3;
+            margin-bottom: 1.2rem;
+            color: var(--logo-cream);
+            text-shadow: 4px 4px 0px #000, 6px 6px 0px var(--logo-red);
+        }
+
+        .hero-subtitle {
+            font-family: var(--font-pixel-sub);
+            font-size: 1.05rem;
+            color: var(--logo-cream-gold);
+            margin-bottom: 1.8rem;
+            text-transform: uppercase;
+        }
+
+        .usp-box {
+            background: #000;
+            border: 2px dashed var(--logo-red);
+            padding: 1.2rem 1.5rem;
+            margin: 0 auto 2rem;
+            font-size: 0.95rem;
+            color: #e2e8f0;
+            position: relative;
+            box-shadow: 3px 3px 0px #000;
+        }
+
+        .usp-box-header {
+            font-family: var(--font-pixel-sub);
+            font-size: 0.8rem;
+            color: var(--logo-cream);
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-bio {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            margin: 0 auto 2.5rem;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1.2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            font-family: var(--font-pixel-sub);
+            font-size: 0.9rem;
+            padding: 0.9rem 1.8rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            cursor: pointer;
+            border: 3px solid #000;
+            transition: transform 0.1s ease;
+        }
+
+        .btn-primary {
+            background: var(--logo-cream);
+            color: #000;
+            box-shadow: 4px 4px 0px #000, 6px 6px 0px var(--logo-red);
+            font-weight: 700;
+        }
+
+        .btn-primary:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px #000, 8px 8px 0px var(--logo-cream);
+            background: var(--logo-red);
+            color: #fff;
+        }
+
+        .btn-secondary {
+            background: #000;
+            color: var(--logo-cream);
+            border-color: var(--logo-cream);
+            box-shadow: 4px 4px 0px #000, 6px 6px 0px var(--logo-red);
+        }
+
+        .btn-secondary:hover {
+            transform: translate(-2px, -2px);
+            background: var(--logo-red);
+            color: var(--logo-cream);
+            box-shadow: 6px 6px 0px #000, 8px 8px 0px var(--logo-cream);
+        }
+
+        .hero-stats-hud {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 3px dashed rgba(255, 253, 222, 0.2);
+        }
+
+        .hud-item {
+            background: #000;
+            border: 2px solid var(--logo-red);
+            padding: 0.8rem;
+            box-shadow: 3px 3px 0px #000;
+        }
+
+        .hud-item label {
+            font-family: var(--font-pixel-sub);
+            font-size: 0.7rem;
+            color: var(--logo-cream);
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .hud-item p {
+            font-family: var(--font-pixel);
+            font-size: 0.85rem;
+            color: var(--logo-cream-gold);
+        }
+
+        /* ==========================================================================
+           5. ABOUT ME SECTION
+           ========================================================================== */
+        .about-card {
+            background: var(--bg-card);
+            border: 3px solid var(--logo-cream);
+            box-shadow: 6px 6px 0px #000, 8px 8px 0px var(--logo-red);
+            padding: 2.8rem;
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* ==========================================================================
+           6. PROJECTS SECTION (VIDEO SHOWCASE)
+           ========================================================================== */
+        .project-disclaimer-box {
+            background: #000;
+            border: 2px dashed var(--accent-yellow);
+            padding: 1rem 1.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            font-family: var(--font-pixel-sub);
+            font-size: 0.85rem;
+            color: var(--accent-yellow);
+            box-shadow: 4px 4px 0px #000;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border: 3px solid #fff;
+            box-shadow: var(--pixel-shadow);
+            padding: 1.8rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            transition: transform 0.2s ease;
+        }
+
+        .project-card:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 6px 6px 0px #000, 8px 8px 0px var(--accent-pink);
+            border-color: var(--accent-cyan);
+        }
+
+        .video-container {
+            width: 100%;
+            border: 2px solid var(--accent-cyan);
+            background: #000;
+            margin-bottom: 1.2rem;
+            box-shadow: 3px 3px 0px #000;
+            overflow: hidden;
+        }
+
+        .video-container video {
+            width: 100%;
+            height: 220px;
+            display: block;
+            object-fit: cover;
+            background: #000;
+        }
+
+        .project-card-title {
+            font-family: var(--font-pixel-sub);
+            font-size: 1.05rem;
+            color: #fff;
+            margin-bottom: 0.6rem;
+        }
+
+        .project-card-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 1.2rem;
+            line-height: 1.6;
+        }
+
+        /* ==========================================================================
+           7. SKILLS SECTION
+           ========================================================================== */
+        .skills-category-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 3.5rem;
+        }
+
+        .skill-category-card {
+            background: var(--bg-card);
+            border: 3px solid #fff;
+            box-shadow: var(--pixel-shadow);
+            padding: 2rem;
+            position: relative;
+            transition: transform 0.2s ease;
+        }
+
+        .skill-category-card:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 6px 6px 0px #000, 8px 8px 0px var(--accent-pink);
+            border-color: var(--accent-cyan);
+        }
+
+        .skill-cat-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px dashed rgba(255, 255, 255, 0.15);
+            padding-bottom: 1rem;
+        }
+
+        .skill-cat-icon {
+            font-size: 1.8rem;
+            width: 46px;
+            height: 46px;
+            background: #000;
+            border: 2px solid var(--accent-cyan);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 3px 3px 0px #000;
+        }
+
+        .skill-cat-title {
+            font-family: var(--font-pixel-sub);
+            font-size: 1rem;
+            color: #fff;
+        }
+
+        .skill-cat-subtitle {
+            font-family: var(--font-pixel-vt);
+            font-size: 1.1rem;
+            color: var(--accent-yellow);
+        }
+
+        .skill-list-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+        }
+
+        .skill-tag-badge {
+            font-family: var(--font-pixel-sub);
+            font-size: 0.75rem;
+            padding: 0.4rem 0.8rem;
+            background: #000;
+            border: 2px solid var(--accent-indigo);
+            color: #fff;
+            box-shadow: 2px 2px 0px #000;
+            transition: all 0.1s ease;
+        }
+
+        .skill-tag-badge:hover {
+            background: var(--accent-indigo);
+            border-color: #fff;
+            transform: translate(-2px, -2px);
+        }
+
+        .tech-cloud-box {
+            background: var(--bg-card);
+            border: 3px solid #fff;
+            box-shadow: var(--pixel-shadow);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .tech-cloud-title {
+            font-family: var(--font-pixel-sub);
+            font-size: 1.1rem;
+            color: var(--accent-yellow);
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-chips {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.8rem;
+        }
+
+        .chip {
+            font-family: var(--font-pixel-sub);
+            font-size: 0.75rem;
+            padding: 0.5rem 1rem;
+            background: #000;
+            border: 2px solid var(--accent-cyan);
+            color: var(--text-main);
+            box-shadow: 3px 3px 0px #000;
+            transition: all 0.1s ease;
+        }
+
+        .chip:hover {
+            transform: translate(-2px, -2px);
+            background: var(--accent-pink);
+            color: #fff;
+            border-color: #fff;
+        }
+
+        /* ==========================================================================
+           8. WORK EXPERIENCE QUEST LOG
+           ========================================================================== */
+        .timeline {
+            position: relative;
+            max-width: 850px;
+            margin: 0 auto;
+            padding-left: 2.5rem;
+        }
+
+        html[dir="rtl"] .timeline {
+            padding-left: 0;
+            padding-right: 2.5rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--accent-cyan);
+            box-shadow: 2px 0 0 #000;
+        }
+
+        html[dir="rtl"] .timeline::before {
+            left: auto;
+            right: 0;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 0.5s ease;
+        }
+
+        html[dir="rtl"] .timeline-item {
+            transform: translateX(30px);
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -2.5rem;
+            top: 0.8rem;
+            transform: translateX(-50%);
+            width: 16px;
+            height: 16px;
+            background: var(--accent-yellow);
+            border: 3px solid #000;
+            box-shadow: 0 0 10px var(--accent-yellow);
+            z-index: 2;
+        }
+
+        html[dir="rtl"] .timeline-dot {
+            left: auto;
+            right: -2.5rem;
+            transform: translateX(50%);
+        }
+
+        .timeline-card {
+            background: var(--bg-card);
+            border: 3px solid #fff;
+            box-shadow: var(--pixel-shadow);
+            padding: 2rem;
+            position: relative;
+        }
+
+        .card-header-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .job-title {
+            font-family: var(--font-pixel-sub);
+            font-size: 1.1rem;
+            color: #fff;
+        }
+
+        .company-name {
+            font-family: var(--font-pixel-vt);
+            font-size: 1.3rem;
+            color: var(--accent-pink);
+        }
+
+        .job-date {
+            font-family: var(--font-pixel-sub);
+            font-size: 0.75rem;
+            color: var(--accent-yellow);
+            background: #000;
+            padding: 0.3rem 0.8rem;
+            border: 2px solid var(--accent-yellow);
+        }
+
+        .job-location {
+            font-family: var(--font-pixel-vt);
+            font-size: 1.1rem;
+            color: var(--text-dim);
+            margin-bottom: 1rem;
+        }
+
+        .job-desc {
+            color: var(--text-muted);
+            font-size: 0.98rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .badge-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .badge-chip {
+            font-family: var(--font-pixel-sub);
+            font-size: 0.7rem;
+            padding: 0.3rem 0.7rem;
+            background: #000;
+            color: var(--accent-cyan);
+            border: 1px solid var(--accent-cyan);
+        }
+
+        /* ==========================================================================
+           9. EDUCATION & INFINITE MARQUEE
+           ========================================================================== */
+        .edu-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .edu-card {
+            background: var(--bg-card);
+            border: 3px solid #fff;
+            box-shadow: var(--pixel-shadow);
+            padding: 2rem;
+        }
+
+        .edu-icon {
+            font-size: 2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .edu-degree {
+            font-family: var(--font-pixel-sub);
+            font-size: 1rem;
+            color: #fff;
+            margin-bottom: 0.6rem;
+            line-height: 1.4;
+        }
+
+        .edu-institution {
+            font-family: var(--font-pixel-vt);
+            font-size: 1.2rem;
+            color: var(--accent-cyan);
+            margin-bottom: 0.6rem;
+        }
+
+        .edu-year {
+            font-family: var(--font-pixel-sub);
+            font-size: 0.75rem;
+            color: var(--accent-yellow);
+            background: #000;
+            padding: 0.3rem 0.8rem;
+            border: 1px solid var(--accent-yellow);
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .languages-card {
+            background: var(--bg-card);
+            border: 3px solid #fff;
+            box-shadow: var(--pixel-shadow);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .lang-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.8rem 1rem;
+            background: #000;
+            border: 2px solid var(--border-pixel);
+        }
+
+        .lang-name {
+            font-family: var(--font-pixel-sub);
+            font-size: 0.85rem;
+            color: #fff;
+        }
+
+        .lang-badge {
+            font-family: var(--font-pixel-sub);
+            font-size: 0.75rem;
+            padding: 0.3rem 0.8rem;
+            background: var(--accent-pink);
+            color: #fff;
+            border: 1px solid #000;
+        }
+
+        .marquee-container {
+            width: 100%;
+            overflow: hidden;
+            background: #000;
+            border-top: 3px solid var(--accent-cyan);
+            border-bottom: 3px solid var(--accent-cyan);
+            padding: 1rem 0;
+            margin-top: 2rem;
+            white-space: nowrap;
+        }
+
+        .marquee-track {
+            display: inline-flex;
+            gap: 3rem;
+            animation: marquee 20s linear infinite;
+        }
+
+        .marquee-item {
+            font-family: var(--font-pixel);
+            font-size: 0.85rem;
+            color: var(--accent-yellow);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .marquee-item span {
+            color: var(--accent-pink);
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* ==========================================================================
+           10. CONTACT SECTION
+           ========================================================================== */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3.5rem;
+            align-items: center;
+        }
+
+        .contact-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .contact-card {
+            background: var(--bg-card);
+            border: 3px solid #fff;
+            box-shadow: 4px 4px 0px #000;
+            padding: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.1s ease;
+            cursor: pointer;
+        }
+
+        .contact-card:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 6px 6px 0px #000, 8px 8px 0px var(--accent-cyan);
+            border-color: var(--accent-cyan);
+        }
+
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+            background: #000;
+            border: 2px solid var(--accent-cyan);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.4rem;
+            color: var(--accent-cyan);
+            flex-shrink: 0;
+        }
+
+        .contact-info label {
+            font-family: var(--font-pixel-sub);
+            font-size: 0.7rem;
+            color: var(--accent-pink);
+            display: block;
+        }
+
+        .contact-info p {
+            font-size: 1rem;
+            color: #fff;
+            font-weight: 500;
+        }
+
+        .avatar-ripple-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 320px;
+            position: relative;
+        }
+
+        .pulsing-avatar-box {
+            width: 140px;
+            height: 140px;
+            background: #000;
+            position: relative;
+            z-index: 3;
+            border: 4px solid var(--accent-cyan);
+            box-shadow: 6px 6px 0px #000, 8px 8px 0px var(--accent-pink);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: var(--font-pixel);
+            font-size: 1.8rem;
+            color: var(--accent-yellow);
+        }
+
+        .pulsing-avatar-box span {
+            font-family: var(--font-pixel-sub);
+            font-size: 0.75rem;
+            color: var(--accent-green);
+            margin-top: 0.5rem;
+        }
+
+        .ripple-ring {
+            position: absolute;
+            border: 3px dashed var(--accent-cyan);
+            animation: rippleExpand 3s infinite linear;
+            z-index: 1;
+            opacity: 0;
+        }
+
+        .ripple-ring:nth-child(1) { animation-delay: 0s; }
+        .ripple-ring:nth-child(2) { animation-delay: 1s; }
+        .ripple-ring:nth-child(3) { animation-delay: 2s; }
+
+        @keyframes rippleExpand {
+            0% { width: 140px; height: 140px; opacity: 1; border-color: var(--accent-cyan); }
+            50% { border-color: var(--accent-pink); }
+            100% { width: 340px; height: 340px; opacity: 0; border-color: var(--accent-yellow); }
+        }
+
+        footer {
+            border-top: 3px solid var(--accent-cyan);
+            padding: 2rem 0;
+            text-align: center;
+            color: var(--text-dim);
+            font-family: var(--font-pixel-sub);
+            font-size: 0.75rem;
+            background: #000;
+            position: relative;
+            z-index: 2;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #000;
+            border: 3px solid var(--accent-cyan);
+            color: #fff;
+            padding: 0.8rem 1.4rem;
+            font-family: var(--font-pixel-sub);
+            font-size: 0.8rem;
+            z-index: 10000;
+            box-shadow: 6px 6px 0px #000;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        @media (max-width: 992px) {
+            .projects-grid, .skills-category-grid, .edu-grid, .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+            .hero-name {
+                font-size: 1.7rem;
+            }
+            .hero-stats-hud {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 75px;
+                left: 0;
+                width: 100%;
+                background: #000;
+                flex-direction: column;
+                padding: 1.5rem;
+                gap: 1rem;
+                border-bottom: 4px solid var(--accent-cyan);
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .mobile-toggle {
+                display: block;
+            }
+            .hero-name {
+                font-size: 1.4rem;
+            }
+            .timeline {
+                padding-left: 1.8rem;
+            }
+            .timeline-dot {
+                left: -1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CRT Scanline Effect Overlay -->
+    <div class="scanline-overlay"></div>
+
+    <!-- Live Starry Pixel Canvas Background -->
+    <canvas id="pixel-canvas"></canvas>
+
+    <!-- Custom Retro Pixel Cursor -->
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="cursor-ring" id="cursor-ring"></div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">Copied to clipboard!</div>
+
+    <!-- Loading Screen (Retro Arcade) -->
+    <div id="loader">
+        <div class="loader-title" data-i18n="loader-title">AHMED ASHRAF</div>
+        <div class="loader-box">
+            <div class="loader-bar"></div>
+        </div>
+        <div class="loader-subtext" data-i18n="loader-subtext">INSERT COIN... LOADING 2D WORLD</div>
+    </div>
+
+    <!-- Retro Navbar with Language Switcher -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="nav-left-box">
+                <a href="#hero" class="nav-logo">
+                    <img src="assets/logo.png" alt="Ahmed For Games Logo">
+                    AHMED<span> FOR GAMES</span>
+                </a>
+                <button class="lang-btn" id="lang-btn">🌐 AR / عربي</button>
+            </div>
+            <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle Navigation">MENU</button>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#hero" data-i18n="nav-start">Start</a></li>
+                <li><a href="#about" data-i18n="nav-about">About</a></li>
+                <li><a href="#projects" data-i18n="nav-projects">Projects</a></li>
+                <li><a href="#skills" data-i18n="nav-skills">Stats/Skills</a></li>
+                <li><a href="#experience" data-i18n="nav-exp">Quest Log</a></li>
+                <li><a href="#education" data-i18n="nav-edu">Badges</a></li>
+                <li><a href="#contact" data-i18n="nav-contact">Connect</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section (Retro Arcade Start Screen) -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-logo-badge">
+                    <img src="assets/logo.png" alt="Ahmed For Games" class="hero-logo-img">
+                </div>
+                <div class="availability-tag" data-i18n="hero-avail">
+                    <span class="pulse-dot"></span> STATUS: ONLINE / OPEN TO WORK
+                </div>
+                <h1 class="hero-name" data-i18n="hero-name">AHMED ASHRAF HAMADA</h1>
+                <div class="hero-subtitle" data-i18n="hero-sub">⚡ JUNIOR 2D GAME DEVELOPER | UNITY & C# ⚡</div>
+                
+                <!-- Quest Objective Box -->
+                <div class="usp-box">
+                    <div class="usp-box-header" data-i18n="usp-header">📜 QUEST OBJECTIVE (USP):</div>
+                    <span data-i18n="usp-text">Junior Game Developer specializing in Unity & C# with a focus on 2D gameplay programming. I design original mechanics and adapt systems inspired by existing games to create unique, engaging player experiences.</span>
+                </div>
+
+                <p class="hero-bio" data-i18n="hero-bio">
+                    Certified through the Digital Egypt Pioneers Initiative (DEPI) with an IT Engineering background. Skilled in implementing 2D player controllers, physics dynamics, input systems, and responsive UI overlays.
+                </p>
+                <div class="cta-group">
+                    <a href="#projects" class="btn btn-primary" data-i18n="hero-btn1">
+                        PRESS START <span>▼</span>
+                    </a>
+                    <a href="#contact" class="btn btn-secondary" data-i18n="hero-btn2">
+                        GET IN TOUCH
+                    </a>
+                </div>
+
+                <!-- Player Stats HUD Bar -->
+                <div class="hero-stats-hud">
+                    <div class="hud-item">
+                        <label data-i18n="hud-l1">CORE ENGINE</label>
+                        <p>UNITY 2D</p>
+                    </div>
+                    <div class="hud-item">
+                        <label data-i18n="hud-l2">SPELL LANGUAGE</label>
+                        <p>C# SCRIPT</p>
+                    </div>
+                    <div class="hud-item">
+                        <label data-i18n="hud-l3">GUILD</label>
+                        <p>DEPI 2026</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Me Section (Engaging Hook & Complete Bio) -->
+    <section id="about">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag" data-i18n="about-tag">CHARACTER BIO</span>
+                <h2 class="section-title" data-i18n="about-title">ABOUT ME</h2>
+            </div>
+            
+            <div class="about-card">
+                <!-- Hook Header -->
+                <div style="background: #000; border: 2px dashed var(--accent-pink); padding: 1.2rem; margin-bottom: 2rem; box-shadow: 3px 3px 0px #000;">
+                    <p style="font-family: var(--font-pixel-sub); font-size: 0.95rem; color: var(--accent-yellow); line-height: 1.6; text-transform: uppercase;" data-i18n="about-hook">
+                        ⚡ "TRANSFORMING RAW CODE & PHYSICS DYNAMICS INTO PLAYABLE, ENGAGING 2D WORLDS."
+                    </p>
+                </div>
+
+                <!-- Comprehensive Bio Paragraphs -->
+                <p style="font-size: 1.05rem; color: #e2e8f0; margin-bottom: 1.5rem; line-height: 1.8;" data-i18n="about-p1">
+                    🎮 <strong>Who I Am:</strong> I’m <strong>Ahmed Ashraf Hamada</strong>, a dedicated Junior Game Developer specializing in <strong>Unity 2D & C#</strong> with a primary focus on gameplay programming. I thrive on designing intuitive 2D mechanics, responsive RigidBody2D movement dynamics, and state-driven player controllers.
+                </p>
+
+                <p style="font-size: 1.05rem; color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.8;" data-i18n="about-p2">
+                    🎓 <strong>Education & DEPI Certification:</strong> I am currently pursuing a <strong>Bachelor of Technology in Information Technology</strong> at the Egyptian-German Technological College in Assiut Technological University (2023–2027). Additionally, I completed intensive game development training through the <strong>Digital Egypt Pioneers Initiative (DEPI - July 2026)</strong>, mastering 2D physics engines, input systems, and custom UI architecture.
+                </p>
+
+                <p style="font-size: 1.05rem; color: var(--text-muted); margin-bottom: 2rem; line-height: 1.8;" data-i18n="about-p3">
+                    🕹️ <strong>My Philosophy:</strong> I believe memorable game experiences start with fluid controls and satisfying gameplay loops. I enjoy taking complex mechanics apart, analyzing how they work, and adapting or rebuilding them to create unique, polished player experiences.
+                </p>
+
+                <div class="badge-chips">
+                    <span class="badge-chip">Unity 2D Engine</span>
+                    <span class="badge-chip">C# Gameplay Programming</span>
+                    <span class="badge-chip">DEPI 2026 Certified</span>
+                    <span class="badge-chip">IT Engineering Student</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section (Video Recordings Showcase) -->
+    <section id="projects">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag" data-i18n="proj-tag">PLAYABLE DEMOS & VIDEOS</span>
+                <h2 class="section-title" data-i18n="proj-title">GAME PROJECTS & MECHANICS</h2>
+            </div>
+
+            <!-- Disclaimer Banner -->
+            <div class="project-disclaimer-box" data-i18n="proj-disclaimer">
+                👾 ALL PROJECTS SHOWN ARE HANDS-ON GAMEPLAY EXPERIMENTS & MECHANICS BUILT INDEPENDENTLY FROM SCRATCH BY ME.
+            </div>
+
+            <div class="projects-grid">
+                <!-- Video Project 1 -->
+                <div class="project-card">
+                    <div class="video-container">
+                        <video controls preload="metadata" poster="assets/thumb_proj1.jpg">
+                            <source src="assets/videos/2026-09-19 23-15-03.mkv" type="video/x-matroska">
+                            <source src="assets/videos/2026-09-19 23-15-03.mkv" type="video/mp4">
+                            Your browser does not support video playback.
+                        </video>
+                    </div>
+                    <div>
+                        <h3 class="project-card-title" data-i18n="p1-title">🎮 2D Platformer Prototype (UI & Save System)</h3>
+                        <p class="project-card-desc" data-i18n="p1-desc">
+                            Initial 2D Platformer build featuring custom UI, a simple load & save system, and movement controls. Built to evaluate the concept with clients. Engine: Unity | Language: C#.
+                        </p>
+                    </div>
+                    <div class="badge-chips">
+                        <span class="badge-chip">Unity 2D</span>
+                        <span class="badge-chip">C# Scripting</span>
+                        <span class="badge-chip">2D Platformer</span>
+                        <span class="badge-chip">UI & Save System</span>
+                    </div>
+                </div>
+
+                <!-- Video Project 2 -->
+                <div class="project-card">
+                    <div class="video-container">
+                        <video controls preload="metadata" poster="assets/thumb_proj2.jpg">
+                            <source src="assets/videos/2026-09-19 23-18-14.mkv" type="video/x-matroska">
+                            <source src="assets/videos/2026-09-19 23-18-14.mkv" type="video/mp4">
+                            Your browser does not support video playback.
+                        </video>
+                    </div>
+                    <div>
+                        <h3 class="project-card-title" data-i18n="p2-title">🕹️ 3D Single-Axis Collector Prototype</h3>
+                        <p class="project-card-desc" data-i18n="p2-desc">
+                            Initial 3D single-axis gameplay prototype. Collect yellow capsules for 10 points and avoid red spheres to save 3 lives. Features Restart Menu & Button. Engine: Unity | Language: C#.
+                        </p>
+                    </div>
+                    <div class="badge-chips">
+                        <span class="badge-chip">Unity 3D</span>
+                        <span class="badge-chip">C# Scripting</span>
+                        <span class="badge-chip">3D Collector</span>
+                        <span class="badge-chip">Restart Menu & HUD</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section (Retro Skill Tree - No Percentages) -->
+    <section id="skills">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag" data-i18n="skills-tag">CHARACTER STATS</span>
+                <h2 class="section-title" data-i18n="skills-title">SKILLS & SPELLS</h2>
+            </div>
+            
+            <div class="skills-category-grid">
+                <!-- Category 1: Game Engine -->
+                <div class="skill-category-card">
+                    <div class="skill-cat-header">
+                        <div class="skill-cat-icon">🎮</div>
+                        <div>
+                            <h3 class="skill-cat-title" data-i18n="cat1-title">GAME ENGINE & 2D</h3>
+                            <span class="skill-cat-subtitle" data-i18n="cat1-sub">UNITY 2D SPECIALIZATION</span>
+                        </div>
+                    </div>
+                    <div class="skill-list-items">
+                        <span class="skill-tag-badge">⚡ Unity 2D Engine</span>
+                        <span class="skill-tag-badge">⚙️ Rigidbody2D Physics</span>
+                        <span class="skill-tag-badge">🗺️ Tilemaps & Grid</span>
+                        <span class="skill-tag-badge">💥 Collisions</span>
+                    </div>
+                </div>
+
+                <!-- Category 2: Programming -->
+                <div class="skill-category-card">
+                    <div class="skill-cat-header">
+                        <div class="skill-cat-icon">💻</div>
+                        <div>
+                            <h3 class="skill-cat-title" data-i18n="cat2-title">PROGRAMMING MAGIC</h3>
+                            <span class="skill-cat-subtitle" data-i18n="cat2-sub">C# & ARCHITECTURE</span>
+                        </div>
+                    </div>
+                    <div class="skill-list-items">
+                        <span class="skill-tag-badge">🔷 C# Language</span>
+                        <span class="skill-tag-badge">🧩 OOP Principles</span>
+                        <span class="skill-tag-badge">🔄 State Machines (FSM)</span>
+                        <span class="skill-tag-badge">📦 ScriptableObjects</span>
+                        <span class="skill-tag-badge">✨ Clean Code</span>
+                    </div>
+                </div>
+
+                <!-- Category 3: Gameplay Systems -->
+                <div class="skill-category-card">
+                    <div class="skill-cat-header">
+                        <div class="skill-cat-icon">🕹️</div>
+                        <div>
+                            <h3 class="skill-cat-title" data-i18n="cat3-title">GAMEPLAY MECHANICS</h3>
+                            <span class="skill-cat-subtitle" data-i18n="cat3-sub">PLAYER SYSTEMS & LOGIC</span>
+                        </div>
+                    </div>
+                    <div class="skill-list-items">
+                        <span class="skill-tag-badge">🏃 Movement Controllers</span>
+                        <span class="skill-tag-badge">🎯 Input System</span>
+                        <span class="skill-tag-badge">🔍 Mechanics Recreation</span>
+                        <span class="skill-tag-badge">🎥 Cameras</span>
+                        <span class="skill-tag-badge">📊 Custom UI</span>
+                    </div>
+                </div>
+
+                <!-- Category 4: Tools -->
+                <div class="skill-category-card">
+                    <div class="skill-cat-header">
+                        <div class="skill-cat-icon">🛠️</div>
+                        <div>
+                            <h3 class="skill-cat-title" data-i18n="cat4-title">DEV INVENTORY</h3>
+                            <span class="skill-cat-subtitle" data-i18n="cat4-sub">TOOLS & METHODS</span>
+                        </div>
+                    </div>
+                    <div class="skill-list-items">
+                        <span class="skill-tag-badge">🖥️ Visual Studio</span>
+                        <span class="skill-tag-badge">🌿 Git & GitHub</span>
+                        <span class="skill-tag-badge">🐞 Debugging</span>
+                        <span class="skill-tag-badge">📜 Unity Scripting</span>
+                        <span class="skill-tag-badge">🎓 DEPI Certificate</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tech Chip Cloud -->
+            <div class="tech-cloud-box">
+                <h3 class="tech-cloud-title" data-i18n="cloud-title">⚡ TECH KEYWORD CLOUD</h3>
+                <div class="tech-chips">
+                    <span class="chip">C# Language</span>
+                    <span class="chip">Unity 2D</span>
+                    <span class="chip">Visual Studio</span>
+                    <span class="chip">Physics2D</span>
+                    <span class="chip">Player Movement</span>
+                    <span class="chip">Input System</span>
+                    <span class="chip">Unity Scripting</span>
+                    <span class="chip">Mechanics Recreation</span>
+                    <span class="chip">Custom UI</span>
+                    <span class="chip">Collision Physics</span>
+                    <span class="chip">2D Game Architecture</span>
+                    <span class="chip">DEPI Initiative</span>
+                    <span class="chip">State Machines</span>
+                    <span class="chip">RigidBody2D</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work Experience Section (Quest Log) -->
+    <section id="experience">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag" data-i18n="exp-tag">WORLD MAP & TIMELINE</span>
+                <h2 class="section-title" data-i18n="exp-title">QUEST LOG (EXPERIENCE)</h2>
+            </div>
+
+            <div class="timeline">
+                <!-- Quest Item 1 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <div class="card-header-flex">
+                            <div>
+                                <h3 class="job-title" data-i18n="j1-title">GAME DEV TRAINEE</h3>
+                                <div class="company-name" data-i18n="j1-company">DIGITAL EGYPT PIONEERS INITIATIVE (DEPI)</div>
+                            </div>
+                            <span class="job-date" data-i18n="j1-date">JULY 2026</span>
+                        </div>
+                        <div class="job-location" data-i18n="j1-loc">📍 ASSIUT, EGYPT</div>
+                        <p class="job-desc" data-i18n="j1-desc">
+                            Completed advanced C# & Unity 2D game development training. Engineered 2D games, developed player controllers, physics collision algorithms, input systems, and responsive UI overlays with performance-optimized Unity scripting.
+                        </p>
+                        <div class="badge-chips">
+                            <span class="badge-chip">C# Fundamentals & Advanced</span>
+                            <span class="badge-chip">Unity 2D</span>
+                            <span class="badge-chip">Physics & Collisions</span>
+                            <span class="badge-chip">Input Systems</span>
+                            <span class="badge-chip">Unity Scripting</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quest Item 2 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <div class="card-header-flex">
+                            <div>
+                                <h3 class="job-title" data-i18n="j2-title">GAMEPLAY SYSTEMS DEVELOPER</h3>
+                                <div class="company-name" data-i18n="j2-company">INDEPENDENT & ACADEMIC PROJECTS</div>
+                            </div>
+                            <span class="job-date" data-i18n="j2-date">2024 – PRESENT</span>
+                        </div>
+                        <div class="job-location" data-i18n="j2-loc">📍 ASSIUT, EGYPT</div>
+                        <p class="job-desc" data-i18n="j2-desc">
+                            Analyzed, reverse-engineered, and adapted original gameplay mechanics inspired by classic and modern 2D games. Designed reusable state machines, player physics controllers, dialogue systems, and UI overlays.
+                        </p>
+                        <div class="badge-chips">
+                            <span class="badge-chip">Mechanics Recreation</span>
+                            <span class="badge-chip">State Machines</span>
+                            <span class="badge-chip">2D Gameplay Systems</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education & Languages Section (Badges) -->
+    <section id="education">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag" data-i18n="edu-tag">UNLOCKED ACHIEVEMENTS</span>
+                <h2 class="section-title" data-i18n="edu-title">EDUCATION & LANGUAGES</h2>
+            </div>
+
+            <div class="edu-grid">
+                <!-- Education Card -->
+                <div class="edu-card">
+                    <div class="edu-icon">🎓</div>
+                    <h3 class="edu-degree" data-i18n="edu-degree">BACHELOR OF TECHNOLOGY IN INFORMATION TECHNOLOGY</h3>
+                    <div class="edu-institution" data-i18n="edu-inst">
+                        EGYPTIAN-GERMAN TECHNOLOGICAL COLLEGE IN ASSIUT | ASSIUT TECHNOLOGICAL UNIVERSITY
+                    </div>
+                    <span class="edu-year" data-i18n="edu-year">🗓️ 2023 – 2027</span>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;" data-i18n="edu-desc">
+                        Focused on computer science foundations, information technology, object-oriented software engineering, and software design principles for game development.
+                    </p>
+                </div>
+
+                <!-- Languages Card -->
+                <div class="languages-card">
+                    <h3 style="font-family: var(--font-pixel-sub); color: var(--accent-yellow); font-size: 1.1rem;" data-i18n="lang-header">🌐 LANGUAGES</h3>
+                    <div class="lang-item">
+                        <span class="lang-name" data-i18n="lang1-name">ARABIC</span>
+                        <span class="lang-badge" data-i18n="lang1-badge">NATIVE</span>
+                    </div>
+                    <div class="lang-item">
+                        <span class="lang-name" data-i18n="lang2-name">ENGLISH</span>
+                        <span class="lang-badge" data-i18n="lang2-badge">GOOD PROFICIENCY</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Infinite Marquee -->
+            <div class="marquee-container">
+                <div class="marquee-track">
+                    <div class="marquee-item">ASSUT TECHNOLOGICAL UNIVERSITY <span>★</span></div>
+                    <div class="marquee-item">DIGITAL EGYPT PIONEERS INITIATIVE (DEPI) <span>★</span></div>
+                    <div class="marquee-item">EGYPTIAN-GERMAN TECHNOLOGICAL COLLEGE <span>★</span></div>
+                    <div class="marquee-item">UNITY 2D GAME DEV <span>★</span></div>
+                    <div class="marquee-item">C# GAME MECHANICS <span>★</span></div>
+                    <!-- Duplicate for loop -->
+                    <div class="marquee-item">ASSUT TECHNOLOGICAL UNIVERSITY <span>★</span></div>
+                    <div class="marquee-item">DIGITAL EGYPT PIONEERS INITIATIVE (DEPI) <span>★</span></div>
+                    <div class="marquee-item">EGYPTIAN-GERMAN TECHNOLOGICAL COLLEGE <span>★</span></div>
+                    <div class="marquee-item">UNITY 2D GAME DEV <span>★</span></div>
+                    <div class="marquee-item">C# GAME MECHANICS <span>★</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section (Save Point) -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag" data-i18n="contact-tag">SAVE POINT</span>
+                <h2 class="section-title" data-i18n="contact-title">CONNECT & MULTIPLAYER</h2>
+            </div>
+
+            <div class="contact-grid">
+                <!-- Left Column Contact Info Cards -->
+                <div class="contact-cards">
+                    <a href="mailto:ahmedashrf33658498@gmail.com" class="contact-card copy-btn" data-copy="ahmedashrf33658498@gmail.com">
+                        <div class="contact-icon">📧</div>
+                        <div class="contact-info">
+                            <label data-i18n="c1-label">EMAIL ADDRESS</label>
+                            <p>ahmedashrf33658498@gmail.com</p>
+                        </div>
+                    </a>
+
+                    <a href="tel:+201033658498" class="contact-card copy-btn" data-copy="+201033658498">
+                        <div class="contact-icon">📱</div>
+                        <div class="contact-info">
+                            <label data-i18n="c2-label">PHONE NUMBER</label>
+                            <p>+20 103 365 8498</p>
+                        </div>
+                    </a>
+
+                    <div class="contact-card">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-info">
+                            <label data-i18n="c3-label">LOCATION</label>
+                            <p data-i18n="c3-val">Assiut, Egypt</p>
+                        </div>
+                    </div>
+
+                    <a href="https://linkedin.com/in/ahmed-ashrf-572a57354" target="_blank" rel="noopener" class="contact-card">
+                        <div class="contact-icon">🔗</div>
+                        <div class="contact-info">
+                            <label data-i18n="c4-label">LINKEDIN PROFILE</label>
+                            <p>linkedin.com/in/ahmed-ashrf-572a57354</p>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Right Side Pulsing Pixel Save Point Box -->
+                <div class="avatar-ripple-container">
+                    <div class="ripple-ring"></div>
+                    <div class="ripple-ring"></div>
+                    <div class="ripple-ring"></div>
+                    <div class="pulsing-avatar-box">
+                        AAH
+                        <span data-i18n="save-badge">SAVE POINT</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p data-i18n="footer-text">&copy; 2026 AHMED ASHRAF HAMADA. JUNIOR 2D GAME DEVELOPER (UNITY & C#). ALL RIGHTS RESERVED.</p>
+        </div>
+    </footer>
+
+    <!-- ==========================================================================
+       11. JAVASCRIPT ANIMATIONS & LANGUAGE SWITCHER DICTIONARY
+       ========================================================================== -->
+    <script>
+        // 1. Language Translation Dictionary (EN / AR)
+        const i18n = {
+            en: {
+                "loader-title": "AHMED ASHRAF",
+                "loader-subtext": "INSERT COIN... LOADING 2D WORLD",
+                "nav-start": "Start",
+                "nav-about": "About",
+                "nav-projects": "Projects",
+                "nav-skills": "Stats/Skills",
+                "nav-exp": "Quest Log",
+                "nav-edu": "Badges",
+                "nav-contact": "Connect",
+                "hero-avail": '<span class="pulse-dot"></span> STATUS: ONLINE / OPEN TO WORK',
+                "hero-name": "AHMED ASHRAF HAMADA",
+                "hero-sub": "⚡ JUNIOR 2D GAME DEVELOPER | UNITY & C# ⚡",
+                "usp-header": "📜 QUEST OBJECTIVE (USP):",
+                "usp-text": "Junior Game Developer specializing in Unity & C# with a focus on 2D gameplay programming. I design original mechanics and adapt systems inspired by existing games to create unique, engaging player experiences.",
+                "hero-bio": "Certified through the Digital Egypt Pioneers Initiative (DEPI) with an IT Engineering background. Skilled in implementing 2D player controllers, physics dynamics, input systems, and responsive UI overlays.",
+                "hero-btn1": "PRESS START ▼",
+                "hero-btn2": "GET IN TOUCH",
+                "hud-l1": "CORE ENGINE",
+                "hud-l2": "SPELL LANGUAGE",
+                "hud-l3": "GUILD",
+                "about-tag": "CHARACTER BIO",
+                "about-title": "ABOUT ME",
+                "about-hook": '⚡ "TRANSFORMING RAW CODE & PHYSICS DYNAMICS INTO PLAYABLE, ENGAGING 2D WORLDS."',
+                "about-p1": '🎮 <strong>Who I Am:</strong> I’m <strong>Ahmed Ashraf Hamada</strong>, a dedicated Junior Game Developer specializing in <strong>Unity 2D & C#</strong> with a primary focus on gameplay programming. I thrive on designing intuitive 2D mechanics, responsive RigidBody2D movement dynamics, and state-driven player controllers.',
+                "about-p2": '🎓 <strong>Education & DEPI Certification:</strong> I am currently pursuing a <strong>Bachelor of Technology in Information Technology</strong> at the Egyptian-German Technological College in Assiut Technological University (2023–2027). Additionally, I completed intensive game development training through the <strong>Digital Egypt Pioneers Initiative (DEPI - July 2026)</strong>, mastering 2D physics engines, input systems, and custom UI architecture.',
+                "about-p3": '🕹️ <strong>My Philosophy:</strong> I believe memorable game experiences start with fluid controls and satisfying gameplay loops. I enjoy taking complex mechanics apart, analyzing how they work, and adapting or rebuilding them to create unique, polished player experiences.',
+                "proj-tag": "PLAYABLE DEMOS & VIDEOS",
+                "proj-title": "GAME PROJECTS & MECHANICS",
+                "proj-disclaimer": "👾 ALL PROJECTS SHOWN ARE HANDS-ON GAMEPLAY EXPERIMENTS & MECHANICS BUILT INDEPENDENTLY FROM SCRATCH BY ME.",
+                "p1-title": "🎮 2D Platformer Prototype (UI & Save System)",
+                "p1-desc": "Initial 2D Platformer build featuring custom UI, a simple load & save system, and movement controls. Built to evaluate the concept with clients. Engine: Unity | Language: C#.",
+                "p2-title": "🕹️ 3D Single-Axis Collector Prototype",
+                "p2-desc": "Initial 3D single-axis gameplay prototype. Collect yellow capsules for 10 points and avoid red spheres to save 3 lives. Features Restart Menu & Button. Engine: Unity | Language: C#.",
+                "skills-tag": "CHARACTER STATS",
+                "skills-title": "SKILLS & SPELLS",
+                "cat1-title": "GAME ENGINE & 2D",
+                "cat1-sub": "UNITY 2D SPECIALIZATION",
+                "cat2-title": "PROGRAMMING MAGIC",
+                "cat2-sub": "C# & ARCHITECTURE",
+                "cat3-title": "GAMEPLAY MECHANICS",
+                "cat3-sub": "PLAYER SYSTEMS & LOGIC",
+                "cat4-title": "DEV INVENTORY",
+                "cat4-sub": "TOOLS & METHODS",
+                "cloud-title": "⚡ TECH KEYWORD CLOUD",
+                "exp-tag": "WORLD MAP & TIMELINE",
+                "exp-title": "QUEST LOG (EXPERIENCE)",
+                "j1-title": "GAME DEV TRAINEE",
+                "j1-company": "DIGITAL EGYPT PIONEERS INITIATIVE (DEPI)",
+                "j1-date": "JULY 2026",
+                "j1-loc": "📍 ASSIUT, EGYPT",
+                "j1-desc": "Completed advanced C# & Unity 2D game development training. Engineered 2D games, developed player controllers, physics collision algorithms, input systems, and responsive UI overlays with performance-optimized Unity scripting.",
+                "j2-title": "GAMEPLAY SYSTEMS DEVELOPER",
+                "j2-company": "INDEPENDENT & ACADEMIC PROJECTS",
+                "j2-date": "2024 – PRESENT",
+                "j2-loc": "📍 ASSIUT, EGYPT",
+                "j2-desc": "Analyzed, reverse-engineered, and adapted original gameplay mechanics inspired by classic and modern 2D games. Designed reusable state machines, player physics controllers, dialogue systems, and UI overlays.",
+                "edu-tag": "UNLOCKED ACHIEVEMENTS",
+                "edu-title": "EDUCATION & LANGUAGES",
+                "edu-degree": "BACHELOR OF TECHNOLOGY IN INFORMATION TECHNOLOGY",
+                "edu-inst": "EGYPTIAN-GERMAN TECHNOLOGICAL COLLEGE IN ASSIUT | ASSIUT TECHNOLOGICAL UNIVERSITY",
+                "edu-year": "🗓️ 2023 – 2027",
+                "edu-desc": "Focused on computer science foundations, information technology, object-oriented software engineering, and software design principles for game development.",
+                "lang-header": "🌐 LANGUAGES",
+                "lang1-name": "ARABIC",
+                "lang1-badge": "NATIVE",
+                "lang2-name": "ENGLISH",
+                "lang2-badge": "GOOD PROFICIENCY",
+                "contact-tag": "SAVE POINT",
+                "contact-title": "CONNECT & MULTIPLAYER",
+                "c1-label": "EMAIL ADDRESS",
+                "c2-label": "PHONE NUMBER",
+                "c3-label": "LOCATION",
+                "c3-val": "Assiut, Egypt",
+                "c4-label": "LINKEDIN PROFILE",
+                "save-badge": "SAVE POINT",
+                "footer-text": "&copy; 2026 AHMED ASHRAF HAMADA. JUNIOR 2D GAME DEVELOPER (UNITY & C#). ALL RIGHTS RESERVED."
+            },
+            ar: {
+                "loader-title": "أحمد أشرف",
+                "loader-subtext": "أدخل العملة... جاري تحميل العالم 2D",
+                "nav-start": "البداية",
+                "nav-about": "نبذة عني",
+                "nav-projects": "المشاريع",
+                "nav-skills": "المهارات",
+                "nav-exp": "الخبرات",
+                "nav-edu": "المؤهلات",
+                "nav-contact": "للتواصل",
+                "hero-avail": '<span class="pulse-dot"></span> الحالة: متصل / متاح للعمل',
+                "hero-name": "أحمد أشرف حمادة",
+                "hero-sub": "⚡ مطور ألعاب 2D مبتدئ | UNITY & C# ⚡",
+                "usp-header": "📜 هدف المهمة (USP):",
+                "usp-text": "مطور ألعاب مبتدئ متخصص في Unity و C# مع التركيز على برمجة ألعاب 2D. أقوم بتصميم ميكانيكيات مبتكرة وتكييف أنظمة مستوحاة من الألعاب الشهيرة لخلق تجارب لعب ممتعة وفريدة.",
+                "hero-bio": "حاصل على شهادة مبادرة رواد مصر الرقمية (DEPI) وخلفية في هندسة تكنولوجيا المعلومات. متخصص في تطوير أنظمة حركة اللاعبين 2D والفيزياء البرمجية والواجهات التفاعلية.",
+                "hero-btn1": "ابدأ الآن ▼",
+                "hero-btn2": "تواصل معي",
+                "hud-l1": "المحرك الأساسي",
+                "hud-l2": "لغة البرمجة",
+                "hud-l3": "المبادرة",
+                "about-tag": "السيرة الشخصية",
+                "about-title": "نبذة عني",
+                "about-hook": '⚡ "تحويل الأكواد والفيزياء البرمجية إلى عوالم ألعاب 2D ممتعة وتفاعلية."',
+                "about-p1": '🎮 <strong>من أنا:</strong> أنا <strong>أحمد أشرف حمادة</strong>، مطور ألعاب 2D متطلع متخصص في <strong>Unity و C#</strong> مع تركيز أساسي على برمجة الـ Gameplay. أتميز بتصميم أنظمة الحركة، وفيزياء RigidBody2D، وأنظمة الـ State Machines.',
+                "about-p2": '🎓 <strong>التعليم والشهادات:</strong> أدرس حالياً بكالوريوس تكنولوجيا المعلومات بالكلية التكنولوجية المصرية الألمانية بجامعة أسيوط التكنولوجية (2023–2027). واجتزت التدريب المكثف لمبادرة <strong>رواد مصر الرقمية (DEPI - يوليو 2026)</strong>.',
+                "about-p3": '🕹️ <strong>فلسفتي:</strong> أؤمن أن تجارب الألعاب الممتازة تبدأ من التحكم السلس وحلقات اللعب الممتعة. أحب تحليل ميكانيكيات الألعاب وتعديلها لتطوير تجارب استثنائية.',
+                "proj-tag": "عروض الفيديو التفاعلية",
+                "proj-title": "مشاريع الألعاب والميكانيكيات",
+                "proj-disclaimer": "👾 جميع المشاريع المعروضة هي تجارب عملية وميكانيكيات مصنعة بالكامل بنفسي.",
+                "p1-title": "🎮 Build مبدئي - لعبة 2D Platformer و UI",
+                "p1-desc": "بناء مبدئي يتضمن واجهة المستخدم (UI)، نظام حفظ وتحميل بسيط (Simple load and save system)، وأنظمة التحكم بالحركة (Movement control). البناء عبارة عن 2D Platformer، وهدفه معرفة العميل ما إذا كان البناء المبدئي مناسباً أم لا. جميع الخطوات والرسومات مصنعة خصيصاً للمشروع كملكية عامة مبدئية. المحرك: Unity | لغة البرمجة: C#.",
+                "p2-title": "🕹️ Build مبدئي - لعبة 3D تجميعية (Single-Axis)",
+                "p2-desc": "البناء المبدئي عبارة عن لعبة 3D تتحرك على محور واحد، يقوم فيها اللاعب بتقاط الكبسولات الصفراء لتسجيل 10 نقاط وتجنب الكرات الحمراء لمنع نقص الفرص الثلاث المتاحة. يتضمن البناء قائمة وزر إعادة التشغيل (Restart Menu & Button) للظهور عند الخسارة أو انتهاء الوقت. جميع الـ Assets هي Placeholder. المحرك: Unity | لغة البرمجة: C#.",
+                "skills-tag": "إحصائيات المهارات",
+                "skills-title": "المهارات والقدرات",
+                "cat1-title": "محركات الألعاب و 2D",
+                "cat1-sub": "تخصص UNITY 2D Engine",
+                "cat2-title": "البرمجة والهيكلة",
+                "cat2-sub": "لغة C# & CLEAN CODE",
+                "cat3-title": "ميكانيكيات اللعب",
+                "cat3-sub": "أنظمة الفيزياء واللاعب",
+                "cat4-title": "أدوات التطوير",
+                "cat4-sub": "بيئة العمل والبرامج",
+                "cloud-title": "⚡ سحابة الكلمات المفتاحية",
+                "exp-tag": "خريطة العالم والخبرات",
+                "exp-title": "سجل الخبرات (QUEST LOG)",
+                "j1-title": "متدرب تطوير ألعاب",
+                "j1-company": "مبادرة رواد مصر الرقمية (DEPI)",
+                "j1-date": "يوليو 2026",
+                "j1-loc": "📍 أسيوط، مصر",
+                "j1-desc": "أتممت التدريب المكثف لتطوير ألعاب 2D باستخدام C# و Unity. قمت بتطوير أنظمة حركة اللاعب، خوارزميات التصادم، وأنظمة المدخلات وواجهات المستخدم المتجاوبة.",
+                "j2-title": "مطور أنظمة وميكانيكيات ألعاب",
+                "j2-company": "مشاريع مستقلة وأكاديمية",
+                "j2-date": "2024 – الحالي",
+                "j2-loc": "📍 أسيوط، مصر",
+                "j2-desc": "قم بتحليل وحذف وتطوير ميكانيكيات ألعاب مستوحاة من ألعاب عالمية، وتصميم أنظمة State Machines وقواعد بيانات الأداء.",
+                "edu-tag": "الإنجازات المحققة",
+                "edu-title": "التعليم واللغات",
+                "edu-degree": "بكالوريوس تكنولوجيا المعلومات",
+                "edu-inst": "الكلية التكنولوجية المصرية الألمانية بأسيوط | جامعة أسيوط التكنولوجية",
+                "edu-year": "🗓️ 2023 – 2027",
+                "edu-desc": "التركيز على أساسيات علوم الحاسب، هندسة البرمجيات كائنية التوجه، ومبادئ تصميم برمجيات الألعاب.",
+                "lang-header": "🌐 اللغات",
+                "lang1-name": "العربية",
+                "lang1-badge": "اللغة الأم",
+                "lang2-name": "الإنجليزية",
+                "lang2-badge": "مستوى جيد جداً",
+                "contact-tag": "نقطة الحفظ",
+                "contact-title": "التواصل والتفاعل",
+                "c1-label": "البريد الإلكتروني",
+                "c2-label": "رقم الهاتف",
+                "c3-label": "الموقع",
+                "c3-val": "أسيوط، مصر",
+                "c4-label": "حساب LINKEDIN",
+                "save-badge": "نقطة الحفظ",
+                "footer-text": "&copy; 2026 أحمد أشرف حمادة. مطور ألعاب 2D مبتدئ (UNITY & C#). جميع الحقوق محفوظة."
+            }
+        };
+
+        let currentLang = 'en';
+
+        const langBtn = document.getElementById('lang-btn');
+        const htmlRoot = document.getElementById('html-root');
+
+        langBtn.addEventListener('click', () => {
+            currentLang = currentLang === 'en' ? 'ar' : 'en';
+            
+            langBtn.innerText = currentLang === 'en' ? '🌐 AR / عربي' : '🌐 EN / English';
+            
+            htmlRoot.setAttribute('dir', currentLang === 'en' ? 'ltr' : 'rtl');
+            htmlRoot.setAttribute('lang', currentLang);
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (i18n[currentLang][key]) {
+                    el.innerHTML = i18n[currentLang][key];
+                }
+            });
+        });
+
+        // 2. Loader Fadeout
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loader');
+            setTimeout(() => {
+                loader.style.opacity = '0';
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                }, 500);
+            }, 1800);
+        });
+
+        // 3. Custom Pixel Cursor
+        const cursorDot = document.getElementById('cursor-dot');
+        const cursorRing = document.getElementById('cursor-ring');
+        let mouseX = -100, mouseY = -100;
+
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            cursorDot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
+            cursorRing.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
+        });
+
+        // 4. Live Starry Pixel Background Canvas
+        const canvas = document.getElementById('pixel-canvas');
+        const ctx = canvas.getContext('2d');
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        });
+
+        const pixelColors = ['#ac3232', '#fffdde', '#fff0bd', '#8b2525'];
+        const stars = [];
+        const numStars = Math.min(Math.floor(width * 0.08), 80);
+
+        class PixelStar {
+            constructor() {
+                this.x = Math.floor(Math.random() * width);
+                this.y = Math.floor(Math.random() * height);
+                this.size = Math.random() > 0.7 ? 4 : 2;
+                this.color = pixelColors[Math.floor(Math.random() * pixelColors.length)];
+                this.speed = Math.random() * 0.4 + 0.1;
+            }
+            update() {
+                this.y += this.speed;
+                if (this.y > height) {
+                    this.y = 0;
+                    this.x = Math.floor(Math.random() * width);
+                }
+            }
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.fillRect(this.x, this.y, this.size, this.size);
+            }
+        }
+
+        for (let i = 0; i < numStars; i++) {
+            stars.push(new PixelStar());
+        }
+
+        function animatePixelStars() {
+            ctx.clearRect(0, 0, width, height);
+
+            for (let i = 0; i < stars.length; i++) {
+                stars[i].update();
+                stars[i].draw();
+            }
+            requestAnimationFrame(animatePixelStars);
+        }
+        animatePixelStars();
+
+        // 5. Mobile Nav Menu Toggle
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const navLinks = document.getElementById('nav-links');
+        mobileToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // 6. IntersectionObserver Scroll Reveals
+        const observerOptions = { threshold: 0.15 };
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.timeline-item, .skill-category-card, .project-card').forEach(el => {
+            revealObserver.observe(el);
+        });
+
+        // 7. Interactive Toast for Copy Buttons
+        const toast = document.getElementById('toast');
+        document.querySelectorAll('.copy-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const text = btn.getAttribute('data-copy');
+                if (text) {
+                    navigator.clipboard.writeText(text);
+                    toast.innerText = currentLang === 'en' ? `COPIED: ${text}` : `تم النسخ: ${text}`;
+                    toast.classList.add('show');
+                    setTimeout(() => {
+                        toast.classList.remove('show');
+                    }, 2500);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
