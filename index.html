@@ -246,6 +246,12 @@
             line-height: 1.4;
         }
 
+        #education .section-title {
+            font-size: clamp(1rem, 2.8vw, 1.5rem);
+            letter-spacing: 0;
+            overflow-wrap: anywhere;
+        }
+
         /* ==========================================================================
            2. RETRO ARCADE LOADING SCREEN
            ========================================================================== */
@@ -409,6 +415,24 @@
             color: #000;
             background: var(--logo-cream);
             box-shadow: 3px 3px 0px var(--logo-red);
+        }
+
+        /* Highlight the navigation link for the section currently in view */
+        .nav-links a.active:not(.nav-btn-connect) {
+            color: #000;
+            background: var(--logo-cream);
+            outline: 2px solid var(--logo-red);
+            outline-offset: 1px;
+            box-shadow: 3px 3px 0px var(--logo-red);
+            font-weight: 700;
+        }
+
+        .nav-btn-connect.active {
+            color: var(--logo-cream) !important;
+            background: var(--logo-red) !important;
+            border-color: var(--logo-cream) !important;
+            box-shadow: 4px 4px 0px #000, 6px 6px 0px var(--logo-cream-gold) !important;
+            transform: translate(-2px, -2px) !important;
         }
 
         .nav-connect-wrapper {
@@ -1033,7 +1057,8 @@
            ========================================================================== */
         .edu-grid {
             display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
+            grid-template-columns: minmax(0, 800px);
+            justify-content: center;
             gap: 2.5rem;
             margin-bottom: 4rem;
         }
@@ -1451,12 +1476,10 @@
                 <li><a href="#hero" data-i18n="nav-start">Start</a></li>
                 <li><a href="#about" data-i18n="nav-about">About</a></li>
                 <li><a href="#projects" data-i18n="nav-projects">Projects</a></li>
-                <li><a href="#services" data-i18n="nav-services">Services</a></li>
                 <li><a href="#skills" data-i18n="nav-skills">Skills</a></li>
-                <li><a href="#experience" data-i18n="nav-exp">EXPERIENCE</a></li>
+                <li><a href="#services" data-i18n="nav-services">Services</a></li>
+                <li><a href="#training" data-i18n="nav-exp">TRAINING</a></li>
                 <li><a href="#education" data-i18n="nav-edu">Badges</a></li>
-                <li><a href="#testimonials" data-i18n="nav-testimonials">Testimonials</a></li>
-                <li><a href="#certifications" data-i18n="nav-certifications">Certifications</a></li>
                 <li class="nav-connect-wrapper"><a href="#contact" class="nav-btn-connect" data-i18n="nav-contact">⚡ Connect</a></li>
             </ul>
         </div>
@@ -1477,7 +1500,7 @@
                 
                 <!-- Quest Objective Box -->
                 <div class="usp-box">
-                    <div class="usp-box-header" data-i18n="usp-header">📜 QUEST OBJECTIVE (USP):</div>
+                    <div class="usp-box-header" data-i18n="usp-header">📜 QUEST OBJECTIVE:</div>
                     <span data-i18n="usp-text">Junior Game Developer specializing in Unity & C# with a focus on 2D gameplay programming. I design original mechanics and adapt systems inspired by existing games to create unique, engaging player experiences.</span>
                 </div>
 
@@ -1687,27 +1710,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Tech Chip Cloud -->
-            <div class="tech-cloud-box">
-                <h3 class="tech-cloud-title" data-i18n="cloud-title">⚡ TECH KEYWORD CLOUD</h3>
-                <div class="tech-chips">
-                    <span class="chip">C# Language</span>
-                    <span class="chip">Unity 2D</span>
-                    <span class="chip">Visual Studio</span>
-                    <span class="chip">Physics2D</span>
-                    <span class="chip">Player Movement</span>
-                    <span class="chip">Input System</span>
-                    <span class="chip">Unity Scripting</span>
-                    <span class="chip">Mechanics Recreation</span>
-                    <span class="chip">Custom UI</span>
-                    <span class="chip">Collision Physics</span>
-                    <span class="chip">2D Game Architecture</span>
-                    <span class="chip">DEPI Initiative</span>
-                    <span class="chip">State Machines</span>
-                    <span class="chip">RigidBody2D</span>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -1758,19 +1760,19 @@
                         </div>
                     </div>
                     <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 1rem; line-height: 1.5;" data-i18n="s3-desc">
-                        Creating a complete game from scratch with everything required (excluding assets).
+                        Developing a complete game from scratch, including the UI and core mechanics, based on the idea you provide. You will provide all required assets, and the project duration will depend on the complexity of the work.
                     </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Work Experience Section (Quest Log) -->
-    <section id="experience">
+    <!-- Training Section (Quest Log) -->
+    <section id="training">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag" data-i18n="exp-tag">WORLD MAP & TIMELINE</span>
-                <h2 class="section-title" data-i18n="exp-title">QUEST LOG (EXPERIENCE)</h2>
+                <span class="section-tag" data-i18n="exp-tag">TRAINING TIMELINE</span>
+                <h2 class="section-title" data-i18n="exp-title">TRAINING</h2>
             </div>
 
             <div class="timeline">
@@ -1807,12 +1809,12 @@
         </div>
     </section>
 
-    <!-- Education & Languages Section (Badges) -->
+    <!-- Education Section (Badges) -->
     <section id="education">
         <div class="container">
             <div class="section-header">
                 <span class="section-tag" data-i18n="edu-tag">UNLOCKED ACHIEVEMENTS</span>
-                <h2 class="section-title" data-i18n="edu-title">EDUCATION & LANGUAGES</h2>
+                <h2 class="section-title" data-i18n="edu-title">EDUCATION</h2>
             </div>
 
             <div class="edu-grid">
@@ -1829,18 +1831,6 @@
                     </p>
                 </div>
 
-                <!-- Languages Card -->
-                <div class="languages-card">
-                    <h3 style="font-family: var(--font-pixel-sub); color: var(--accent-yellow); font-size: 1.1rem;" data-i18n="lang-header">🌐 LANGUAGES</h3>
-                    <div class="lang-item">
-                        <span class="lang-name" data-i18n="lang1-name">ARABIC</span>
-                        <span class="lang-badge" data-i18n="lang1-badge">NATIVE</span>
-                    </div>
-                    <div class="lang-item">
-                        <span class="lang-name" data-i18n="lang2-name">ENGLISH</span>
-                        <span class="lang-badge" data-i18n="lang2-badge">GOOD PROFICIENCY</span>
-                    </div>
-                </div>
             </div>
 
             <!-- Infinite Marquee -->
@@ -1858,36 +1848,6 @@
                     <div class="marquee-item">UNITY 2D GAME DEV <span>★</span></div>
                     <div class="marquee-item">C# GAME MECHANICS <span>★</span></div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section id="testimonials">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag" data-i18n="test-tag">REVIEWS & FEEDBACK</span>
-                <h2 class="section-title" data-i18n="test-title">TESTIMONIALS</h2>
-            </div>
-            <div class="empty-state-card">
-                <div class="empty-icon">💬</div>
-                <h3 class="empty-title" data-i18n="test-empty">No content available yet</h3>
-                <p class="empty-desc" data-i18n="empty-sub">Content will be added soon.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Certifications Section -->
-    <section id="certifications">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag" data-i18n="cert-tag">VERIFIED CREDENTIALS</span>
-                <h2 class="section-title" data-i18n="cert-title">CERTIFICATIONS</h2>
-            </div>
-            <div class="empty-state-card">
-                <div class="empty-icon">📜</div>
-                <h3 class="empty-title" data-i18n="cert-empty">No content available yet</h3>
-                <p class="empty-desc" data-i18n="empty-sub">Content will be added soon.</p>
             </div>
         </div>
     </section>
@@ -1980,15 +1940,13 @@
                 "nav-about": "About",
                 "nav-projects": "Projects",
                 "nav-skills": "Skills",
-                "nav-exp": "EXPERIENCE",
+                "nav-exp": "TRAINING",
                 "nav-edu": "Badges",
-                "nav-testimonials": "Testimonials",
-                "nav-certifications": "Certifications",
                 "nav-contact": "⚡ Connect",
                 "hero-avail": '<span class="pulse-dot"></span> STATUS: ONLINE / OPEN TO WORK',
                 "hero-name": "AHMED ASHRAF HAMADA",
                 "hero-sub": "⚡ JUNIOR 2D GAME DEVELOPER | UNITY & C# ⚡",
-                "usp-header": "📜 QUEST OBJECTIVE (USP):",
+                "usp-header": "📜 QUEST OBJECTIVE:",
                 "usp-text": "Junior Game Developer specializing in Unity & C# with a focus on 2D gameplay programming. I design original mechanics and adapt systems inspired by existing games to create unique, engaging player experiences.",
                 "hero-btn1": "PRESS START ▼",
                 "hero-btn2": "GET IN TOUCH",
@@ -2017,7 +1975,6 @@
                 "cat3-sub": "PLAYER SYSTEMS & LOGIC",
                 "cat4-title": "DEV INVENTORY",
                 "cat4-sub": "TOOLS & METHODS",
-                "cloud-title": "⚡ TECH KEYWORD CLOUD",
                 "nav-services": "Services",
                 "srv-tag": "AVAILABLE QUESTS",
                 "srv-title": "SERVICES & OFFERINGS",
@@ -2029,9 +1986,9 @@
                 "s2-desc": "Creating core movement and the fundamental mechanics of the game, plus building any additional mechanics you want to add. Minimum delivery time is 30 days or more depending on complexity (excluding assets).",
                 "s3-title": "FULL GAME PROJECT",
                 "s3-sub": "FROM SCRATCH",
-                "s3-desc": "Creating a complete game from scratch with everything required (excluding assets).",
-                "exp-tag": "WORLD MAP & TIMELINE",
-                "exp-title": "QUEST LOG (EXPERIENCE)",
+                "s3-desc": "Developing a complete game from scratch, including the UI and core mechanics, based on the idea you provide. You will provide all required assets, and the project duration will depend on the complexity of the work.",
+                "exp-tag": "TRAINING TIMELINE",
+                "exp-title": "TRAINING",
                 "j1-title": "GAME DEV TRAINEE",
                 "j1-company": "DIGITAL EGYPT PIONEERS INITIATIVE (DEPI)",
                 "j1-date": "JULY 2026",
@@ -2043,23 +2000,11 @@
                 "j2-loc": "📍 ASSIUT, EGYPT",
                 "j2-desc": "Analyzed, reverse-engineered, and adapted original gameplay mechanics inspired by classic and modern 2D games. Designed reusable state machines, player physics controllers, dialogue systems, and UI overlays.",
                 "edu-tag": "UNLOCKED ACHIEVEMENTS",
-                "edu-title": "EDUCATION & LANGUAGES",
+                "edu-title": "EDUCATION",
                 "edu-degree": "BACHELOR OF TECHNOLOGY IN INFORMATION TECHNOLOGY",
                 "edu-inst": "EGYPTIAN-GERMAN TECHNOLOGICAL COLLEGE IN ASSIUT | ASSIUT TECHNOLOGICAL UNIVERSITY",
                 "edu-year": "🗓️ 2023 – 2027",
                 "edu-desc": "Focused on computer science foundations, information technology, object-oriented software engineering, and software design principles for game development.",
-                "lang-header": "🌐 LANGUAGES",
-                "lang1-name": "ARABIC",
-                "lang1-badge": "NATIVE",
-                "lang2-name": "ENGLISH",
-                "lang2-badge": "GOOD PROFICIENCY",
-                "test-tag": "REVIEWS & FEEDBACK",
-                "test-title": "TESTIMONIALS",
-                "test-empty": "No content available yet",
-                "cert-tag": "VERIFIED CREDENTIALS",
-                "cert-title": "CERTIFICATIONS",
-                "cert-empty": "No content available yet",
-                "empty-sub": "Content will be added soon",
                 "contact-tag": "SAVE POINT",
                 "contact-title": "CONNECT & MULTIPLAYER",
                 "c1-label": "EMAIL ADDRESS",
@@ -2085,15 +2030,13 @@
                 "nav-about": "نبذة عني",
                 "nav-projects": "المشاريع",
                 "nav-skills": "المهارات",
-                "nav-exp": "الخبرات",
+                "nav-exp": "التدريب",
                 "nav-edu": "المؤهلات",
-                "nav-testimonials": "آراء العملاء",
-                "nav-certifications": "الشهادات",
                 "nav-contact": "⚡ تواصل معي",
                 "hero-avail": '<span class="pulse-dot"></span> الحالة: متصل / متاح للعمل',
                 "hero-name": "أحمد أشرف حمادة",
                 "hero-sub": "⚡ مطور ألعاب 2D مبتدئ | UNITY & C# ⚡",
-                "usp-header": "📜 هدف المهمة (USP):",
+                "usp-header": "📜 هدف المهمة:",
                 "usp-text": "مطور ألعاب مبتدئ متخصص في Unity و C# مع التركيز على برمجة ألعاب 2D. أقوم بتصميم ميكانيكيات مبتكرة وتكييف أنظمة مستوحاة من الألعاب الشهيرة لخلق تجارب لعب ممتعة وفريدة.",
                 "hero-btn1": "ابدأ الآن ▼",
                 "hero-btn2": "تواصل معي",
@@ -2122,7 +2065,6 @@
                 "cat3-sub": "أنظمة الفيزياء واللاعب",
                 "cat4-title": "أدوات التطوير",
                 "cat4-sub": "بيئة العمل والبرامج",
-                "cloud-title": "⚡ سحابة الكلمات المفتاحية",
                 "nav-services": "الخدمات",
                 "srv-tag": "المهام المتاحة",
                 "srv-title": "الخدمات التي أقدمها",
@@ -2134,9 +2076,9 @@
                 "s2-desc": "صناعة أساسيات الحركة والفكرة الأساسية من اللعبة (core mechanics) وبناء بعض الميكانيكيات التي تريد الإضافة في المشروع. الحد الأدنى لتسليم المشروع ثلاثين يوماً أو أكثر على حسب صعوبة الفكرة من غير الأصول (assets).",
                 "s3-title": "صناعة مشروع كامل",
                 "s3-sub": "لعبة كاملة",
-                "s3-desc": "صناعة لعبة كاملة من الصفر بكل شيء من غير الأصول (assets).",
-                "exp-tag": "خريطة العالم والخبرات",
-                "exp-title": "سجل الخبرات (QUEST LOG)",
+                "s3-desc": "تطوير لعبة كاملة من الصفر، تشمل واجهة المستخدم (UI) والميكانيكيات الأساسية (Core Mechanics)، وفقًا للفكرة التي يحددها العميل. يوفّر العميل جميع الأصول (Assets)، وتُحدَّد مدة تنفيذ المشروع حسب درجة تعقيد العمل.",
+                "exp-tag": "سجل التدريب",
+                "exp-title": "التدريب",
                 "j1-title": "متدرب تطوير ألعاب",
                 "j1-company": "مبادرة رواد مصر الرقمية (DEPI)",
                 "j1-date": "يوليو 2026",
@@ -2148,23 +2090,11 @@
                 "j2-loc": "📍 أسيوط، مصر",
                 "j2-desc": "قم بتحليل وحذف وتطوير ميكانيكيات ألعاب مستوحاة من ألعاب عالمية، وتصميم أنظمة State Machines وقواعد بيانات الأداء.",
                 "edu-tag": "الإنجازات المحققة",
-                "edu-title": "التعليم واللغات",
+                "edu-title": "التعليم",
                 "edu-degree": "بكالوريوس تكنولوجيا المعلومات",
                 "edu-inst": "الكلية التكنولوجية المصرية الألمانية بأسيوط | جامعة أسيوط التكنولوجية",
                 "edu-year": "🗓️ 2023 – 2027",
                 "edu-desc": "التركيز على أساسيات علوم الحاسب، هندسة البرمجيات كائنية التوجه، ومبادئ تصميم برمجيات الألعاب.",
-                "lang-header": "🌐 اللغات",
-                "lang1-name": "العربية",
-                "lang1-badge": "اللغة الأم",
-                "lang2-name": "الإنجليزية",
-                "lang2-badge": "مستوى جيد جداً",
-                "test-tag": "التقييمات والآراء",
-                "test-title": "آراء العملاء",
-                "test-empty": "لا يوجد أي محتوى حتى الآن",
-                "cert-tag": "الاعتمادات الموثقة",
-                "cert-title": "الشهادات والاعتمادات",
-                "cert-empty": "لا يوجد أي محتوى حتى الآن",
-                "empty-sub": "سيتم إضافة المحتوى قريباً",
                 "contact-tag": "نقطة الحفظ",
                 "contact-title": "التواصل والتفاعل",
                 "c1-label": "البريد الإلكتروني",
@@ -2299,6 +2229,30 @@
                 navLinks.classList.remove('active');
             });
         });
+
+        // Highlight the navbar link for the section currently being viewed.
+        const sectionNavLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+        const trackedSections = Array.from(document.querySelectorAll('section[id]'));
+
+        function updateActiveNavLink() {
+            const activationPoint = window.scrollY + Math.min(window.innerHeight * 0.4, 320);
+            let currentSectionId = trackedSections.length ? trackedSections[0].id : '';
+
+            trackedSections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+                if (sectionTop <= activationPoint) {
+                    currentSectionId = section.id;
+                }
+            });
+
+            sectionNavLinks.forEach(link => {
+                link.classList.toggle('active', link.getAttribute('href') === `#${currentSectionId}`);
+            });
+        }
+
+        window.addEventListener('scroll', updateActiveNavLink, { passive: true });
+        window.addEventListener('resize', updateActiveNavLink);
+        updateActiveNavLink();
 
         // 6. IntersectionObserver Scroll Reveals
         const observerOptions = { threshold: 0.15 };
